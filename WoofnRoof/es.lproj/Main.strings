@@ -1,0 +1,108 @@
+
+/* Class = "UIButton"; normalTitle = "Sign Up With Email"; ObjectID = "5qm-QL-dW5"; */
+"5qm-QL-dW5.normalTitle" = "Sign Up With Email";
+
+/* Class = "UILabel"; text = "Welcome To WoofnRoof"; ObjectID = "9oq-at-bZO"; */
+"9oq-at-bZO.text" = "Welcome To WoofnRoof";
+
+/* Class = "UILabel"; text = "Already Registered?"; ObjectID = "BWD-UM-3hi"; */
+"BWD-UM-3hi.text" = "Already Registered?";
+
+/* Class = "UILabel"; text = "Hi, Karim"; ObjectID = "FFl-32-dSP"; */
+"FFl-32-dSP.text" = "Hi, Karim";
+
+/* Class = "UIButton"; normalTitle = "Login Here"; ObjectID = "HpD-TV-bq9"; */
+"HpD-TV-bq9.normalTitle" = "Login Here";
+
+/* Class = "UILabel"; text = "EMAIL"; ObjectID = "Ihd-ck-AhR"; */
+"Ihd-ck-AhR.text" = "EMAIL";
+
+/* Class = "UITextField"; placeholder = "**********"; ObjectID = "KhL-71-1au"; */
+"KhL-71-1au.placeholder" = "**********";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "LJk-UV-flL"; */
+"LJk-UV-flL.normalTitle" = "Login";
+
+/* Class = "UILabel"; text = "CONFIRM PASSWORD"; ObjectID = "Lf3-aD-JbG"; */
+"Lf3-aD-JbG.text" = "CONFIRM PASSWORD";
+
+/* Class = "UITextField"; placeholder = "**********"; ObjectID = "OxB-NL-aoT"; */
+"OxB-NL-aoT.placeholder" = "**********";
+
+/* Class = "UITextField"; text = "AUGUST 21, 1985"; ObjectID = "OxB-NL-aoT"; */
+"OxB-NL-aoT.text" = "AUGUST 21, 1985";
+
+/* Class = "UILabel"; text = "NAME"; ObjectID = "P0G-UH-ZuT"; */
+"P0G-UH-ZuT.text" = "NAME";
+
+/* Class = "UILabel"; text = "Create Your Account"; ObjectID = "P2n-c5-vOr"; */
+"P2n-c5-vOr.text" = "Create Your Account";
+
+/* Class = "UITextField"; placeholder = "abc@example.com"; ObjectID = "P8h-p0-IOo"; */
+"P8h-p0-IOo.placeholder" = "abc@example.com";
+
+/* Class = "UITextField"; placeholder = "abc@example.com"; ObjectID = "PG7-ub-Hoc"; */
+"PG7-ub-Hoc.placeholder" = "abc@example.com";
+
+/* Class = "UIButton"; normalTitle = "Sign Up With Facebook"; ObjectID = "Pyr-8g-kIc"; */
+"Pyr-8g-kIc.normalTitle" = "Sign Up With Facebook";
+
+/* Class = "UITextField"; text = "99999-XXXXX"; ObjectID = "QFd-4d-rNU"; */
+"QFd-4d-rNU.text" = "99999-XXXXX";
+
+/* Class = "UILabel"; text = "Event and News"; ObjectID = "Qup-6G-a41"; */
+"Qup-6G-a41.text" = "Event and News";
+
+/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "Spe-Te-kcA"; */
+"Spe-Te-kcA.text" = "PASSWORD";
+
+/* Class = "UITextField"; placeholder = "**********"; ObjectID = "Vuz-gz-3cc"; */
+"Vuz-gz-3cc.placeholder" = "**********";
+
+/* Class = "UITextField"; text = "karimca@gmail.com"; ObjectID = "Vuz-gz-3cc"; */
+"Vuz-gz-3cc.text" = "karimca@gmail.com";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "WMa-0N-24o"; */
+"WMa-0N-24o.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "Y7v-X0-onu"; */
+"Y7v-X0-onu.text" = "PASSWORD";
+
+/* Class = "UILabel"; text = "Your Info"; ObjectID = "dK2-ao-KMD"; */
+"dK2-ao-KMD.text" = "Your Info";
+
+/* Class = "UILabel"; text = "Make sure your information is correct before continuing"; ObjectID = "eJ0-Ur-PaW"; */
+"eJ0-Ur-PaW.text" = "Make sure your information is correct before continuing";
+
+/* Class = "UILabel"; text = "BIRTHDAY"; ObjectID = "eYO-7v-lmn"; */
+"eYO-7v-lmn.text" = "BIRTHDAY";
+
+/* Class = "UILabel"; text = "Welcome To WoofnRoof"; ObjectID = "giR-CH-hGY"; */
+"giR-CH-hGY.text" = "Welcome To WoofnRoof";
+
+/* Class = "UITextField"; placeholder = "abc@example.com"; ObjectID = "lXl-OR-a54"; */
+"lXl-OR-a54.placeholder" = "abc@example.com";
+
+/* Class = "UITextField"; text = "Karim Le Dessin"; ObjectID = "lXl-OR-a54"; */
+"lXl-OR-a54.text" = "Karim Le Dessin";
+
+/* Class = "UILabel"; text = "EMAIL ADDRESS"; ObjectID = "laO-n5-fqN"; */
+"laO-n5-fqN.text" = "EMAIL ADDRESS";
+
+/* Class = "UILabel"; text = "EMAIL"; ObjectID = "m65-5g-RLb"; */
+"m65-5g-RLb.text" = "EMAIL";
+
+/* Class = "UITextField"; placeholder = "**********"; ObjectID = "nKz-vm-hpD"; */
+"nKz-vm-hpD.placeholder" = "**********";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "okr-nO-oBF"; */
+"okr-nO-oBF.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "Looks good?"; ObjectID = "vpX-vc-5D6"; */
+"vpX-vc-5D6.text" = "Looks good?";
+
+/* Class = "UITextField"; placeholder = "**********"; ObjectID = "wVl-2b-Zi0"; */
+"wVl-2b-Zi0.placeholder" = "**********";
+
+/* Class = "UILabel"; text = "Contact Number"; ObjectID = "waO-h6-CfE"; */
+"waO-h6-CfE.text" = "Contact Number";
