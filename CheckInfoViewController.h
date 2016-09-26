@@ -7,18 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "RequestManager.h"
 
+@interface CheckInfoViewController : UIViewController<UITextFieldDelegate,CLLocationManagerDelegate>
+{
+    CLLocationManager *locationManager;
+}
 
-@interface CheckInfoViewController : UIViewController<UITextFieldDelegate >
-
-@property (strong, nonatomic) IBOutlet UITextField *nameTextfield;
-@property (strong, nonatomic) IBOutlet UITextField *emailTextfield;
-@property (strong, nonatomic) IBOutlet UITextField *dateOfBIrthTextfield;
-@property (strong, nonatomic) IBOutlet UITextField *contactNumberTextfield;
-@property (strong, nonatomic) IBOutlet UIScrollView *mainScrollView;
-@property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (strong, nonatomic) IBOutlet UIView *calendarView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *_calendarHeightConstraint;
-
+@property (strong, nonatomic) IBOutlet UITextField *profileNameTextfield;
+@property (strong, nonatomic) IBOutlet UITextField *profileEmailTextfield;
+@property (strong, nonatomic) IBOutlet UITextField *profileDobTextfield;
+@property (strong, nonatomic) IBOutlet UITextField *profileContactTextfield;
+@property (weak, nonatomic) IBOutlet UIButton *profileSubmitButton;
+@property (weak, nonatomic) IBOutlet UIView *profileContentView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileContentViewTopConst;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileContentViewBotConst;
+@property (weak, nonatomic) NSString *emailProperty;
 
 @end

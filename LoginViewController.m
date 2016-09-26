@@ -18,10 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-       //set border on login button
-        _loginButton.layer.borderColor = [UIColor whiteColor].CGColor;
-        _loginButton.layer.borderWidth = 1.0;
-        _loginButton.layer.cornerRadius = 3.0;
+    //set border on login button
+    _loginButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    _loginButton.layer.borderWidth = 1.0;
+    _loginButton.layer.cornerRadius = 3.0;
     
 }
 - (IBAction)submitLoginDetailsAction:(id)sender {
@@ -45,17 +45,18 @@
     
     ////hit login api////
     
-    [RequestManager getFromServer:@"login/email" parameters:[NSMutableDictionary dictionaryWithObjectsAndKeys:self.loginEmailTextfield.text, @"email", self.loginPasswordTextfield.text, @"password", nil] methodType:@"POST" completionHandler:^(NSDictionary *responseDict){
+    [RequestManager getFromServer:@"login/email" parameters:[NSMutableDictionary dictionaryWithObjectsAndKeys:self.loginEmailTextfield.text, @"email", self.loginPasswordTextfield.text, @"password", nil] methodType:@"POST" withToken:false completionHandler:^(NSDictionary *responseDict){
         NSLog(@"%@",responseDict);
         if ([responseDict objectForKey:@"error"]) {
-       
+            
             ////error////
             
+            NSString *messageString;
+            
             if ([[responseDict objectForKey:@"error"] isKindOfClass:[NSString class]]) {
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[responseDict objectForKey:@"error"] preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-                [alertController addAction:ok];
-                [self presentViewController:alertController animated:YES completion:nil];
+                
+                messageString = [responseDict objectForKey:@"error"];
+                
             }
             else {
                 NSArray *emailErrorArray = [NSArray array];
@@ -68,11 +69,14 @@
                     passwordErrorArray = [[responseDict objectForKey:@"error"] objectForKey:@"password"];
                 }
                 
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"%@\n%@",[emailErrorArray componentsJoinedByString:@"\n"],[passwordErrorArray componentsJoinedByString:@"\n"]] preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-                [alertController addAction:ok];
-                [self presentViewController:alertController animated:YES completion:nil];
+                messageString = [NSString stringWithFormat:@"%@\n%@",[emailErrorArray componentsJoinedByString:@"\n"],[passwordErrorArray componentsJoinedByString:@"\n"]];
+                
             }
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:messageString preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:ok];
+            [self presentViewController:alertController animated:YES completion:nil];
             
         } else {
             
@@ -156,7 +160,7 @@
             } completion:nil];
         }
     }
-
+    
     return true;
 }
 
@@ -183,4 +187,16 @@
     }
 }
 
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"firstLogin"]) {
+        CheckInfoViewController *embed = segue.destinationViewController;
+        embed.emailProperty = self.loginEmailTextfield.text;
+        
+    }
+}
 @end

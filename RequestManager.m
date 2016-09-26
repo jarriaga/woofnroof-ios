@@ -10,31 +10,26 @@
 
 @implementation RequestManager
 
-+(void)getFromServer:(NSString*)api parameters:(NSMutableDictionary*)parameters methodType:(NSString*)type completionHandler:(RequestManagerHandler)handler
++(void)getFromServer:(NSString*)api parameters:(NSMutableDictionary*)parameters methodType:(NSString*)type withToken:(BOOL)present completionHandler:(RequestManagerHandler)handler
 {
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
     
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseUrl,api]];
-    
-//    NSArray *temp = [[NSArray alloc] init];
-//    temp = [parameters allKeys];
-//    NSString *paramterString=@"";
-//    NSEnumerator *e = [temp objectEnumerator];
-//    id object;
-//    while (object = [e nextObject]) {
-//        paramterString=[[[[paramterString stringByAppendingString:object] stringByAppendingString:@"="]stringByAppendingString:[parameters objectForKey:object]]stringByAppendingString:@"&"];
-//    }
-//    paramterString = [paramterString substringToIndex:paramterString.length-1];
+
     
     NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
     [urlRequest setHTTPMethod:type];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
+    if (present) {
+        NSString *str = [NSString stringWithFormat:@"Bearer %@",[[NSUserDefaults standardUserDefaults]objectForKey:@"logged_token"]];
+        [urlRequest setValue:str forHTTPHeaderField:@"Authorization"];
+    }
+    
+    
     NSData* json = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
     [urlRequest setHTTPBody:json];
-    
-//    [urlRequest setHTTPBody:[paramterString dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLSessionDataTask * dataTask =[defaultSession dataTaskWithRequest:urlRequest
                                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

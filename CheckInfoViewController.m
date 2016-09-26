@@ -8,11 +8,10 @@
 
 #import "CheckInfoViewController.h"
 
-@interface CheckInfoViewController (){
-    UITextField *activetextfield;
-    UIToolbar *keyboardToolbar;
-    UIDatePicker *datePicker;
-    NSDateFormatter *df ;
+@interface CheckInfoViewController ()
+{
+    NSString *latitudeLoc;
+    NSString *longitudeLoc;
 }
 @end
 
@@ -21,114 +20,214 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //close keyboard when touch anywhere
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-        [self.view addGestureRecognizer:tap];
+    //set border on login button
+    self.profileSubmitButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.profileSubmitButton.layer.borderWidth = 1.0;
+    self.profileSubmitButton.layer.cornerRadius = 3.0;
     
-    //start keyboard notification
-        [self registerForKeyboardNotifications];
+    self.profileEmailTextfield.text = self.emailProperty;
     
-    //set datepicker
-        datePicker = [[UIDatePicker alloc] init];
-        datePicker.datePickerMode = UIDatePickerModeDate;
-        [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
-        datePicker.tag = 5;
-        _dateOfBIrthTextfield.inputView = datePicker;
-    
-    //create tollbar for datepicker field
-        if (keyboardToolbar == nil) {
-            keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-        UIBarButtonItem *extraSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        UIBarButtonItem *accept = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard)];
-        [keyboardToolbar setItems:[[NSArray alloc] initWithObjects: extraSpace, accept, nil]];
+    if ([CLLocationManager locationServicesEnabled]) {
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [locationManager requestWhenInUseAuthorization];
+        [locationManager startUpdatingLocation];
     }
-    //set tollbar on field
-        _dateOfBIrthTextfield.inputAccessoryView = keyboardToolbar;
+
+}
+
+- (IBAction)submitProfileAction:(id)sender {
     
-   
-}
-
--(void)viewDidUnload{
-    //end keyboard notication
-    [self unRegisterForKeyboardNotifications];
-}
-
-//dismiss keyboard
--(void)dismissKeyboard {
-    [self.view endEditing:YES];
-}
-
-//method called when date is changed
-- (void)datePickerValueChanged:(id)sender{
-    NSDate *date = datePicker.date;
-    if (df == nil) {
-        df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"MMMM dd, yyyy"];
+    ////handle view contraints////
+    
+    [self.profileNameTextfield resignFirstResponder];
+    [self.profileEmailTextfield resignFirstResponder];
+    [self.profileDobTextfield resignFirstResponder];
+    [self.profileContactTextfield resignFirstResponder];
+    if (isiPhone4s || isiPhone5) {
+        self.profileContentViewTopConst.constant = 0;
+        self.profileContentViewBotConst.constant = 0;
+        [self.profileContentView setNeedsUpdateConstraints];
+        
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            [self.profileContentView layoutIfNeeded];
+            
+        } completion:nil];
     }
-    [_dateOfBIrthTextfield setText:[df stringFromDate:date]];
-    date = NULL;
+
+    ////hit update profile api////
+    
+    [RequestManager getFromServer:@"profile" parameters:[NSMutableDictionary dictionaryWithObjectsAndKeys:self.profileNameTextfield.text, @"name", self.profileDobTextfield.text, @"birthday", self.profileContactTextfield.text, @"mobile", latitudeLoc, @"latitude", longitudeLoc, @"longitude", nil] methodType:@"PUT" withToken:true completionHandler:^(NSDictionary *responseDict){
+        NSLog(@"%@",responseDict);
+        if ([responseDict objectForKey:@"error"]) {
+            
+            ////error////
+            NSLog(@"something is wrong.");
+            
+        } else {
+            
+            ////success////
+            
+            UIAlertController *alertCont = [UIAlertController alertControllerWithTitle:nil message:[responseDict objectForKey:@"success"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+                [self performSegueWithIdentifier:@"gotoMain" sender:self];
+            }];
+            [alertCont addAction:ok];
+            [self presentViewController:alertCont animated:YES completion:nil];
+        }
+    }];
+    
 }
 
-//textfield delegate methods
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+    
+    UIAlertController *alertCont = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to Get Your Location" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alertCont addAction:ok];
+    [self presentViewController:alertCont animated:YES completion:nil];
+    
+    [locationManager startMonitoringSignificantLocationChanges];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *currentLocation = [locations lastObject];
+    
+    if (currentLocation != nil)
+    {
+        [manager stopUpdatingLocation];
+        longitudeLoc = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        latitudeLoc = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+            NSLog(@"Not Determined");
+            break;
+            
+        case kCLAuthorizationStatusDenied:
+        {
+            NSLog(@"Denied");
+            UIAlertController *alertCont = [UIAlertController alertControllerWithTitle:@"Error" message:@"You need to allow 'WoofnRoof' to access your location. Go to Settings to enable access." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertCont addAction:ok];
+            [self presentViewController:alertCont animated:YES completion:nil];
+        }
+            break;
+            
+        case kCLAuthorizationStatusRestricted:
+            NSLog(@"Restricted");
+            break;
+            
+        case kCLAuthorizationStatusAuthorizedAlways:
+            NSLog(@"Always Allowed");
+            break;
+            
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            NSLog(@"When In Use Allowed");
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+#pragma mark - Keyboard handling
+
+////textfield delegates////
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    activetextfield = textField;
+    if (isiPhone4s || isiPhone5) {
+        if (textField.tag == 9 || textField.tag == 10) {
+            
+            self.profileContentViewTopConst.constant = -200;
+            self.profileContentViewBotConst.constant = 200;
+            [self.profileContentView setNeedsUpdateConstraints];
+            
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                
+                [self.profileContentView layoutIfNeeded];
+                
+            } completion:nil];
+        }
+    }
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    activetextfield = nil;
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    if (isiPhone4s || isiPhone5) {
+        
+        if (textField.tag == 7) {
+            
+            self.profileContentViewTopConst.constant = -200;
+            self.profileContentViewBotConst.constant = 200;
+            [self.profileContentView setNeedsUpdateConstraints];
+            
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                
+                [self.profileContentView layoutIfNeeded];
+                
+            } completion:nil];
+        }
+    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (textField.tag == 1) {
-        [_emailTextfield becomeFirstResponder];
-    } else if (textField.tag == 2) {
-        [_dateOfBIrthTextfield becomeFirstResponder];
-           } else if (textField.tag == 3) {
-         [_contactNumberTextfield becomeFirstResponder];
-    } else if(textField.tag == 4){
-        [self.view endEditing:true];
+    if (textField.tag == 7) {
+        [self.profileDobTextfield becomeFirstResponder];
+    }
+    else if (textField.tag == 9){
+        [self.profileContactTextfield becomeFirstResponder];
+    }
+    else{
+        [textField resignFirstResponder];
+        if (isiPhone4s || isiPhone5) {
+            self.profileContentViewTopConst.constant = 0;
+            self.profileContentViewBotConst.constant = 0;
+            [self.profileContentView setNeedsUpdateConstraints];
+            
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                
+                [self.profileContentView layoutIfNeeded];
+                
+            } completion:nil];
+        }
     }
     return true;
 }
 
+////touches events////
 
-#pragma mark - event of keyboard relative methods
-- (void)registerForKeyboardNotifications{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShown:)  name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:)          name:UIKeyboardWillHideNotification object:nil];
-}
-
-// unregister for keyboard notifications while not visible.
--(void)unRegisterForKeyboardNotifications{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification                                       object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self                                                name:UIKeyboardWillHideNotification object:nil];
-}
-
-//method to make tetxtfield go up (if not visible)
-- (void)keyboardWillShown:(NSNotification*)aNotification{
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 40, 0.0);
-    _mainScrollView.contentInset = contentInsets;
-    _mainScrollView.scrollIndicatorInsets = contentInsets;
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    if (!CGRectContainsPoint(aRect, activetextfield.frame.origin) ) {
-        [self.mainScrollView scrollRectToVisible:activetextfield.frame animated:YES];
+    UITouch *touch = [touches anyObject];
+    if(touch.phase == UITouchPhaseBegan) {
+        [self.profileNameTextfield resignFirstResponder];
+        [self.profileEmailTextfield resignFirstResponder];
+        [self.profileDobTextfield resignFirstResponder];
+        [self.profileContactTextfield resignFirstResponder];
+        if (isiPhone4s || isiPhone5) {
+            self.profileContentViewTopConst.constant = 0;
+            self.profileContentViewBotConst.constant = 0;
+            [self.profileContentView setNeedsUpdateConstraints];
+            
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                
+                [self.profileContentView layoutIfNeeded];
+                
+            } completion:nil];
+        }
     }
 }
-
-//set scrollview to normal
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification{
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    _mainScrollView.contentInset = contentInsets;
-    _mainScrollView.scrollIndicatorInsets = contentInsets;
-}
-
-
-
 
 @end

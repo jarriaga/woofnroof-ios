@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		444831A51D896B110056BB9D /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 444831A41D896B110056BB9D /* RequestManager.m */; };
+		4456075E1D8D2D4E00BB9DA9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4456075D1D8D2D4E00BB9DA9 /* ForgotPasswordViewController.m */; };
+		446356041D8FE8EF00C12424 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446356031D8FE8EF00C12424 /* CoreLocation.framework */; };
 		448A91C61D7AE6290060B27F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A91C51D7AE6290060B27F /* main.m */; };
 		448A91C91D7AE6290060B27F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A91C81D7AE6290060B27F /* AppDelegate.m */; };
 		448A91CC1D7AE6290060B27F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 448A91CB1D7AE6290060B27F /* ViewController.m */; };
 		448A91CF1D7AE6290060B27F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448A91CD1D7AE6290060B27F /* Main.storyboard */; };
 		448A91D11D7AE6290060B27F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 448A91D01D7AE6290060B27F /* Assets.xcassets */; };
 		448A91D41D7AE6290060B27F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448A91D21D7AE6290060B27F /* LaunchScreen.storyboard */; };
+		AB01BFD78C660D9BF834A928 /* libPods-WoofnRoof.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A299564A6480385A7CB9FD76 /* libPods-WoofnRoof.a */; };
 		D61B1EDD1D8678DB00026F79 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = D61B1EDC1D8678DB00026F79 /* SignUpController.m */; };
 		D626825C1D86AF9F00E1B188 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D626825B1D86AF9F00E1B188 /* LoginViewController.m */; };
 		D626825F1D86B4CC00E1B188 /* CheckInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D626825E1D86B4CC00E1B188 /* CheckInfoViewController.m */; };
@@ -22,6 +25,9 @@
 /* Begin PBXFileReference section */
 		444831A31D896B110056BB9D /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequestManager.h; path = ../RequestManager.h; sourceTree = "<group>"; };
 		444831A41D896B110056BB9D /* RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequestManager.m; path = ../RequestManager.m; sourceTree = "<group>"; };
+		4456075C1D8D2D4E00BB9DA9 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		4456075D1D8D2D4E00BB9DA9 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		446356031D8FE8EF00C12424 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		448A91C11D7AE6290060B27F /* WoofnRoof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoofnRoof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		448A91C51D7AE6290060B27F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		448A91C71D7AE6290060B27F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -32,6 +38,9 @@
 		448A91D01D7AE6290060B27F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		448A91D31D7AE6290060B27F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		448A91D51D7AE6290060B27F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DE9FF07E5A85961F9D3B1E0 /* Pods-WoofnRoof.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoofnRoof.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoofnRoof/Pods-WoofnRoof.release.xcconfig"; sourceTree = "<group>"; };
+		5E99E90DB661FFB061EDD652 /* Pods-WoofnRoof.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoofnRoof.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WoofnRoof/Pods-WoofnRoof.debug.xcconfig"; sourceTree = "<group>"; };
+		A299564A6480385A7CB9FD76 /* libPods-WoofnRoof.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WoofnRoof.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61B1EDB1D8678DB00026F79 /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpController.h; path = ../SignUpController.h; sourceTree = "<group>"; };
 		D61B1EDC1D8678DB00026F79 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpController.m; path = ../SignUpController.m; sourceTree = "<group>"; };
 		D626825A1D86AF9F00E1B188 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
@@ -45,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446356041D8FE8EF00C12424 /* CoreLocation.framework in Frameworks */,
+				AB01BFD78C660D9BF834A928 /* libPods-WoofnRoof.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +71,8 @@
 				D61B1EDC1D8678DB00026F79 /* SignUpController.m */,
 				D626825A1D86AF9F00E1B188 /* LoginViewController.h */,
 				D626825B1D86AF9F00E1B188 /* LoginViewController.m */,
+				4456075C1D8D2D4E00BB9DA9 /* ForgotPasswordViewController.h */,
+				4456075D1D8D2D4E00BB9DA9 /* ForgotPasswordViewController.m */,
 				D626825D1D86B4CC00E1B188 /* CheckInfoViewController.h */,
 				D626825E1D86B4CC00E1B188 /* CheckInfoViewController.m */,
 			);
@@ -78,8 +91,11 @@
 		448A91B81D7AE6280060B27F = {
 			isa = PBXGroup;
 			children = (
+				446356031D8FE8EF00C12424 /* CoreLocation.framework */,
 				448A91C31D7AE6290060B27F /* WoofnRoof */,
 				448A91C21D7AE6290060B27F /* Products */,
+				D5AB7A5EE35FBC6BA3174A92 /* Pods */,
+				5A6CEAD705B3E4BC77B0C86C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +131,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5A6CEAD705B3E4BC77B0C86C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A299564A6480385A7CB9FD76 /* libPods-WoofnRoof.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5AB7A5EE35FBC6BA3174A92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E99E90DB661FFB061EDD652 /* Pods-WoofnRoof.debug.xcconfig */,
+				5DE9FF07E5A85961F9D3B1E0 /* Pods-WoofnRoof.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,9 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 448A91D81D7AE6290060B27F /* Build configuration list for PBXNativeTarget "WoofnRoof" */;
 			buildPhases = (
+				51E62F47DE181E3B845AD665 /* [CP] Check Pods Manifest.lock */,
 				448A91BD1D7AE6290060B27F /* Sources */,
 				448A91BE1D7AE6290060B27F /* Frameworks */,
 				448A91BF1D7AE6290060B27F /* Resources */,
+				DBF661134E944875946E9C8A /* [CP] Embed Pods Frameworks */,
+				FAAC789A01E7D4FBFF3115F1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,6 +217,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		51E62F47DE181E3B845AD665 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DBF661134E944875946E9C8A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WoofnRoof/Pods-WoofnRoof-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAAC789A01E7D4FBFF3115F1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WoofnRoof/Pods-WoofnRoof-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		448A91BD1D7AE6290060B27F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -190,6 +274,7 @@
 				D626825F1D86B4CC00E1B188 /* CheckInfoViewController.m in Sources */,
 				448A91C91D7AE6290060B27F /* AppDelegate.m in Sources */,
 				444831A51D896B110056BB9D /* RequestManager.m in Sources */,
+				4456075E1D8D2D4E00BB9DA9 /* ForgotPasswordViewController.m in Sources */,
 				448A91C61D7AE6290060B27F /* main.m in Sources */,
 				D61B1EDD1D8678DB00026F79 /* SignUpController.m in Sources */,
 				D626825C1D86AF9F00E1B188 /* LoginViewController.m in Sources */,
@@ -304,6 +389,7 @@
 		};
 		448A91D91D7AE6290060B27F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E99E90DB661FFB061EDD652 /* Pods-WoofnRoof.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -318,6 +404,7 @@
 		};
 		448A91DA1D7AE6290060B27F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DE9FF07E5A85961F9D3B1E0 /* Pods-WoofnRoof.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

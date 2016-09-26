@@ -13,6 +13,6 @@
 
 typedef void (^RequestManagerHandler)(NSDictionary* responseDict);
 
-+(void)getFromServer:(NSString*)api parameters:(NSMutableDictionary*)parameters methodType:(NSString*)type completionHandler:(RequestManagerHandler)handler;
++(void)getFromServer:(NSString*)api parameters:(NSMutableDictionary*)parameters methodType:(NSString*)type withToken:(BOOL)present completionHandler:(RequestManagerHandler)handler;
 
 @end

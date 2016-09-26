@@ -42,7 +42,7 @@
     
     ////hit signup api////
     
-    [RequestManager getFromServer:@"signup/email" parameters:[NSMutableDictionary dictionaryWithObjectsAndKeys:self.emailTextfield.text, @"email", self.passwordTextfield.text, @"password", self.confirmPasswordTextfield.text, @"password_confirmation", @"", @"mobile", nil] methodType:@"POST" completionHandler:^(NSDictionary *responseDict){
+    [RequestManager getFromServer:@"signup/email" parameters:[NSMutableDictionary dictionaryWithObjectsAndKeys:self.emailTextfield.text, @"email", self.passwordTextfield.text, @"password", self.confirmPasswordTextfield.text, @"password_confirmation", @"", @"mobile", nil] methodType:@"POST" withToken:false completionHandler:^(NSDictionary *responseDict){
         NSLog(@"%@",responseDict);
         if ([responseDict objectForKey:@"error"]) {
             
@@ -73,7 +73,7 @@
             
             ////hit login api////
             
-            [RequestManager getFromServer:@"login/email" parameters:[NSMutableDictionary dictionaryWithObjectsAndKeys:[responseDict objectForKey:@"email"], @"email", self.passwordTextfield.text, @"password", nil] methodType:@"POST" completionHandler:^(NSDictionary *responseDict){
+            [RequestManager getFromServer:@"login/email" parameters:[NSMutableDictionary dictionaryWithObjectsAndKeys:[responseDict objectForKey:@"email"], @"email", self.passwordTextfield.text, @"password", nil] methodType:@"POST" withToken:false completionHandler:^(NSDictionary *responseDict){
                 NSLog(@"%@",responseDict);
                 if ([responseDict objectForKey:@"error"]) {
                     
@@ -216,6 +216,19 @@
         
     }
 }
+
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+     if ([[segue identifier] isEqualToString:@"signupSuccess"]) {
+         CheckInfoViewController *embed = segue.destinationViewController;
+         embed.emailProperty = self.emailTextfield.text;
+         
+     }
+ }
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RequestManager.h"
+#import "CheckInfoViewController.h"
 
 @interface SignUpController : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *signupContentView;
